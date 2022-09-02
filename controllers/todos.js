@@ -1,4 +1,6 @@
 const Todo = require('../models/Todo')
+//added 
+const Mood = require('../models/Mood')
 
 module.exports = {
     getTodos: async (req,res)=>{
@@ -6,11 +8,25 @@ module.exports = {
         try{
             const todoItems = await Todo.find({userId:req.user.id})
             const itemsLeft = await Todo.countDocuments({userId:req.user.id,completed: false})
-            res.render('todos.ejs', {todos: todoItems, left: itemsLeft, user: req.user})
+            const moodC = await Mood.find({userId: req.user.id})
+            res.render('todos.ejs', {todos: todoItems, left: itemsLeft, user: req.user,  userMood : moodC})
         }catch(err){
             console.log(err)
         }
     },
+    // getMood: async (req,res)=>{
+    //     console.log(req.mood)
+    //     try{
+    //         // const todoItems = await Todo.find({userId:req.user.id})
+    //         // const itemsLeft = await Todo.countDocuments({userId:req.user.id,completed: false})
+    //         const moodC = await Mood.find({userId: req.user.id})
+            
+    //         // res.render('todos.ejs', {todos: todoItems, left: itemsLeft, user: req.user})
+    //         res.render('todos.ejs', {userMood: moodC, user: req.user})
+    //     }catch(err){
+    //         console.log(err)
+    //     }
+    // },
     createTodo: async (req, res)=>{
         try{
             await Todo.create({todo: req.body.todoItem, completed: false, userId: req.user.id})
@@ -51,5 +67,38 @@ module.exports = {
         }catch(err){
             console.log(err)
         }
-    }
+    },
+
+
+
+    ////////////////////////////////////////////////Catherines Section//////////////////////////
+
+    // createMood: async (req, res) => {
+    //     console.log(req.body.moodIDFromJSFile)
+    //     try{
+    //         await Mood.create({ todo: req.body.todoItem, userId: req.user.id})
+    //         console.log('Mood has been added')
+    //         res.direct('/todos')
+    //     }catch(err){
+    //         console.log(err)
+    //     }
+    // }
+    //Mood in Mood.create will be schema database?
+
+
+    // createTodo: async (req, res)=>{
+    //     try{
+    //         await Todo.create({todo: req.body.todoItem, completed: false, userId: req.user.id})
+    //         console.log('Todo has been added!')
+    //         res.redirect('/todos')
+    //     }catch(err){
+    //         console.log(err)
+    //     }
+    // },
+
+
+    //schema would only have todo and userID
+
+    ///////////////////////////////////////////////Catherines Section//////////////////////////
+
 }    

@@ -15,4 +15,12 @@ const TodoSchema = new mongoose.Schema({
   }
 })
 
+/////////////////Mood Schema///////////////////////
+// const MoodSchema = new mongoose.Schema ({
+//   mood:{
+//     type:String, 
+//     required: true,
+//   }
+// })
+
 module.exports = mongoose.model('Todo', TodoSchema)

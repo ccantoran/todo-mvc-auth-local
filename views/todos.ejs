@@ -18,12 +18,34 @@
     <% }) %>    
     </ul>
 
-    <h2><%= user.userName %> has <%= left %> things left to do.</h2>
+    <h2><%= user.userName %> has <%= left%> things left to do.</h2>
 
     <form action="/todos/createTodo" method='POST'>
         <input type="text" placeholder="Enter Todo Item" name='todoItem'>
         <input type="submit">
     </form>
+
+
+    <!-- Catherines Section -->
+    <!-- Just Testing/This is the selection -->
+  <!-- <label for="mood">Choose your mood</label>
+                        <select id="mood">
+                            <option value="happy">Happy</option>
+                            <option value="sad">Sad</option>
+                            <option value="mad">Mad</option>
+                        </select> -->
+
+            <!-- changed the action to go to specific route -->
+            <form action="/todos/createMood" method='POST'>
+                    <!-- here would go the above selection -->
+                        <input type="text" placeholder="Mood here" name='moodHere'>
+                        <input type="submit">
+            </form>
+
+            <h2><%= user.userName %> is <%= userMood.mood %> today</h2>
+
+    <!-- Catherines Section -->
+
 
     <a href="/logout">Logout</a>
 
